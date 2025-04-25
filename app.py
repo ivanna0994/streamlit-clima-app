@@ -30,7 +30,7 @@ seccion = st.sidebar.selectbox(
 # Función para cargar datos
 @st.cache_data
 def cargar_datos_reducido():
-    df = pd.read_csv(r"C:\Users\10Pearls\Documents\Eda App\jena_climate_2009_2016.csv")
+    df = pd.read_csv("sample_data.csv")
     df = df[['Date Time', 'T (degC)']]
     df['Date Time'] = pd.to_datetime(df['Date Time'], dayfirst=True)
     return df
@@ -57,8 +57,9 @@ elif seccion == "Descomposición":
     st.header("🧩 Descomposición de la Serie de Tiempo")
     st.write("Visualización temporal de la serie descompuesta:")
 
-    df_reducido.set_index('Date Time', inplace=True)
-    resultado = seasonal_decompose(df_reducido['T (degC)'].dropna(), model='additive', period=365)
+    df_temp = df_reducido.copy()
+    df_temp.set_index('Date Time', inplace=True)
+    resultado = seasonal_decompose(df_temp['T (degC)'].dropna(), model='additive', period=365)
 
     fig, axes = plt.subplots(4, 1, figsize=(14, 10))
     resultado.observed.plot(ax=axes[0], title='Serie Original', color='black')
