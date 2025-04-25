@@ -38,7 +38,17 @@ def cargar_datos_reducido():
 
 df_reducido = cargar_datos_reducido()
 
-# 📊 Contenido según la sección elegida
+if seccion == "Vista Previa Datos":
+    st.header("🔍 Vista Previa del Dataset")
+
+    st.subheader("📄 Primeras filas del dataset:")
+    st.dataframe(df_reducido.head(10))   # Muestra las primeras 10 filas
+
+    st.subheader("📊 Estadísticas Descriptivas de la Temperatura")
+    st.write(df_reducido['T (degC)'].describe())
+
+    st.info(f"El dataset contiene **{df_reducido.shape[0]} filas** y **{df_reducido.shape[1]} columnas**.")
+
 if seccion == "Distribución Temperatura":
     st.header("📊 Distribución de la Temperatura del Aire 🌡️")
 
