@@ -40,13 +40,23 @@ df_reducido = cargar_datos_reducido()
 
 if seccion == "Vista Previa Datos":
     st.header("🔍 Vista Previa del Dataset")
+    st.markdown ("""
+📌 Descripción del Proyecto
 
+Este proyecto analiza diferentes estrategias para predecir la temperatura del aire a partir de datos meteorológicos registrados por la estación del Instituto Max Planck de Bioquímica en Jena, Alemania.
+
+Se busca responder: ¿Cuál es la estrategia más precisa y eficiente para predecir la temperatura del aire: modelos de series de tiempo que capturan autocorrelaciones o modelos de regresión basados en variables climáticas?
+
+También se explora la posibilidad de desarrollar un modelo mejorado que combine ambos enfoques: series de tiempo + aprendizaje automático.
+""")
+   
     st.subheader("📄 Primeras filas del dataset:")
-    st.dataframe(df_reducido.head(10))   # Muestra las primeras 10 filas
+    st.dataframe(df_reducido.head(10))   
 
     st.subheader("📊 Estadísticas Descriptivas de la Temperatura")
     st.write(df_reducido['T (degC)'].describe())
-
+    
+    
     st.info(f"El dataset contiene **{df_reducido.shape[0]} filas** y **{df_reducido.shape[1]} columnas**.")
 
 if seccion == "Distribución Temperatura":
@@ -254,4 +264,4 @@ El test de Dickey-Fuller verifica si la serie tiene raíz unitaria (hipótesis n
 Si el **p-valor < 0.05**, podemos considerar la serie como estacionaria.
 
 Puedes ajustar el número de lags si deseas optimizar el análisis según la longitud de la serie.
-    """)
+""")
