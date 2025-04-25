@@ -30,10 +30,11 @@ seccion = st.sidebar.selectbox(
 # Función para cargar datos
 @st.cache_data
 def cargar_datos_reducido():
-    df = pd.read_csv("sample_data.csv")
+    df = pd.read_csv("jena_climate_2009_2016.csv")
     df = df[['Date Time', 'T (degC)']]
     df['Date Time'] = pd.to_datetime(df['Date Time'], dayfirst=True)
     return df
+
 
 df_reducido = cargar_datos_reducido()
 
